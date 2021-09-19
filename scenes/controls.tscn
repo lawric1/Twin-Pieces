@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/btn_up.png" type="Texture" id=2]
+[ext_resource path="res://assets/btn_down.png" type="Texture" id=3]
+[ext_resource path="res://assets/btn_right.png" type="Texture" id=4]
+[ext_resource path="res://assets/btn_left.png" type="Texture" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+export(NodePath) var box_path
+
+func _on_up_pressed():
+	var node = get_node(box_path)
+	if node:
+		node.move(Vector2.UP)
+		
+		print(node)
+		print('clicked')
+
+func _on_left_pressed():
+	var node = get_node(box_path)
+	if node:
+		node.move(Vector2.LEFT)
+		
+		print(node)
+		print('clicked')
+
+func _on_right_pressed():
+	var node = get_node(box_path)
+	if node:
+		node.move(Vector2.RIGHT)
+		
+		print(node)
+		print('clicked')
+
+func _on_down_pressed():
+	var node = get_node(box_path)
+	if node:
+		node.move(Vector2.DOWN)
+		
+		print(node)
+		print('clicked')
+"
+
+[node name="controls" type="Control"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 176.0
+margin_bottom = 160.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="TextureButton" parent="."]
+margin_left = 32.1873
+margin_top = 16.0
+margin_right = 48.1873
+margin_bottom = 32.0
+texture_normal = ExtResource( 4 )
+
+[node name="left" type="TextureButton" parent="."]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 5 )
+
+[node name="up" type="TextureButton" parent="."]
+margin_left = 16.0
+margin_right = 32.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+
+[node name="down" type="TextureButton" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 3 )
+
+[connection signal="pressed" from="right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="down" to="." method="_on_down_pressed"]

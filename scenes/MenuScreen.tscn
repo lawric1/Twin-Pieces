@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/MenuScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/m5x7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/Game Title.png" type="Texture" id=3]
+[ext_resource path="res://assets/Menu input.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio icon1.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio icon2.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Game.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+font_data = ExtResource( 2 )
+
+[node name="Menu Screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+game_scene = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0.145098, 0.0705882, 0.203922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="play" type="Button" parent="VBoxContainer"]
+margin_top = 69.0
+margin_right = 320.0
+margin_bottom = 88.0
+focus_mode = 0
+mouse_filter = 1
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.635294, 0.0784314, 1 )
+custom_colors/font_color_hover = Color( 0.929412, 0.462745, 0.0784314, 1 )
+text = "Start"
+flat = true
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 320.0
+margin_bottom = 111.0
+focus_mode = 0
+mouse_filter = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.635294, 0.0784314, 1 )
+custom_colors/font_color_hover = Color( 0.929412, 0.462745, 0.0784314, 1 )
+text = "Quit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 79.0
+margin_top = 127.0
+margin_right = 255.0
+margin_bottom = 167.0
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0.372549, 0.0705882, 0.501961, 1 )
+text = "How to play: Place the orange pieces in the same order as the purple ones"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game Title" type="Sprite" parent="."]
+position = Vector2( 160.93, 48.4325 )
+texture = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.421
+
+[node name="mute" type="TextureButton" parent="."]
+margin_left = 282.0
+margin_top = 9.0
+margin_right = 300.0
+margin_bottom = 25.0
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="mute" to="." method="_on_mute_pressed"]
